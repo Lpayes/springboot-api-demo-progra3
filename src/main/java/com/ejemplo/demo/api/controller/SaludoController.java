@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ejemplo.demo.api.dto.SaludoResponse;
 import com.ejemplo.demo.domain.service.SaludoService;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.ejemplo.demo.api.dto.SaludoRequest;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Map;
 
@@ -29,31 +33,16 @@ public class SaludoController {
     }
 
 
-
     @GetMapping("/saludos")
     public ResponseEntity<SaludoResponse> saludar(
             @RequestParam(defaultValue = "Mundo") String nombre
     ) {
         return ResponseEntity.ok(saludoService.crearSaludo(nombre));
     }
-    
-
-    /*
-    ============================================
-    PASO 3: DESCOMENTA este bloque y prueba POST
-    ============================================
-
-    1) Descomenta imports:
-       - com.ejemplo.demo.api.dto.SaludoRequest
-       - jakarta.validation.Valid
-       - org.springframework.web.bind.annotation.PostMapping
-       - org.springframework.web.bind.annotation.RequestBody
-
-    2) Descomenta este endpoint:
 
     @PostMapping("/saludos")
     public ResponseEntity<SaludoResponse> saludarPost(@Valid @RequestBody SaludoRequest request) {
         return ResponseEntity.ok(saludoService.crearSaludo(request.nombre()));
     }
-    */
+   
 }
