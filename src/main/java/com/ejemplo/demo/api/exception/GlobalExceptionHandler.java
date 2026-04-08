@@ -43,20 +43,17 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(body);
     }
 
-    /*
-    PASO 5 (EJERCICIO):
-    Descomenta y adapta este manejador cuando agregues validaciones propias
-    en el servicio, por ejemplo IllegalArgumentException.
+
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ErrorResponse> manejarReglaDeNegocio(IllegalArgumentException ex) {
         ErrorResponse body = new ErrorResponse(
-                "BUSINESS_RULE_ERROR",
+        		"BAD_REQUEST",
                 ex.getMessage(),
                 Instant.now(),
                 Map.of()
         );
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
     }
-    */
+    
 }
