@@ -22,7 +22,30 @@ public class SaludoService {
       2) Rechazar nombres con numeros.
       3) Agregar prefijo "Estudiante".
     */
+
     String normalizarNombre(String nombre) {
-        return nombre == null ? "Mundo" : nombre.trim();
+        if (nombre == null || nombre.trim().isEmpty()) {
+            return "Estudiante Mundo";
+        }
+
+        nombre = nombre.trim();
+
+        if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
+            throw new IllegalArgumentException("El nombre no debe contener números.");
+        }
+
+        nombre = nombre.toLowerCase();
+
+        String[] partes = nombre.split("\\s+");
+        StringBuilder nombreFormateado = new StringBuilder();
+
+        for (String parte : partes) {
+            if (!parte.isEmpty()) {
+                String palabra = parte.substring(0, 1).toUpperCase() + parte.substring(1);
+                nombreFormateado.append(palabra).append(" ");
+            }
+        }
+
+        return "Estudiante " + nombreFormateado.toString().trim();
     }
 }
